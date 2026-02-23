@@ -3,11 +3,11 @@ import { Home, ClipboardList, Users, MoreHorizontal, QrCode } from 'lucide-react
 import { motion } from 'framer-motion'
 
 const navItems = [
-  { icon: Home, label: 'Ana sehife', path: '/' },
-  { icon: ClipboardList, label: 'Tapsirig', path: '/tasks' },
+  { icon: Home, label: 'Ana səhifə', path: '/' },
+  { icon: ClipboardList, label: 'Tapşırıq', path: '/tasks' },
   { icon: QrCode, label: 'QR', path: '/qr', isCenter: true },
   { icon: Users, label: 'Dostlar', path: '/friends' },
-  { icon: MoreHorizontal, label: 'Daha cox', path: '/more' },
+  { icon: MoreHorizontal, label: 'Daha çox', path: '/more' },
 ]
 
 export default function BottomNav() {

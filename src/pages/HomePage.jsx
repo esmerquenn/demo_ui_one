@@ -1,14 +1,16 @@
 import { useState, useCallback } from 'react'
-import { Bell } from 'lucide-react'
+import { Bell, Sun, Moon } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { PointsBalance, StatsRow, RecentChecks, DailySpinner, DailyStreak } from '@/features/home'
 import { userData, recentChecks, spinnerPrizes, streakData } from '@/data/mockData'
+import { useTheme } from '@/contexts/ThemeContext'
 
 export default function HomePage() {
   const [user, setUser] = useState(userData)
   const [checks, setChecks] = useState(recentChecks)
   const [isRefreshing, setIsRefreshing] = useState(false)
+  const { isDark, toggleTheme } = useTheme()
 
   const handleRefresh = useCallback(async () => {
     setIsRefreshing(true)
@@ -39,10 +41,26 @@ export default function HomePage() {
           <p className="text-muted-foreground text-sm">Salam</p>
           <h1 className="text-xl font-semibold">{user.name}</h1>
         </div>
-        <button className="relative p-2 rounded-full bg-card active:scale-95 transition-transform lg:hover:bg-muted">
-          <Bell className="w-6 h-6" />
-          <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-destructive rounded-full border-2 border-background" />
-        </button>
+        <div className="flex items-center gap-2">
+          {/* Theme Toggle */}
+          <motion.button
+            onClick={toggleTheme}
+            whileTap={{ scale: 0.9 }}
+            className="p-2 rounded-full bg-card active:scale-95 transition-transform lg:hover:bg-muted"
+          >
+            {isDark ? (
+              <Sun className="w-5 h-5 text-amber-500" />
+            ) : (
+              <Moon className="w-5 h-5 text-primary" />
+            )}
+          </motion.button>
+
+          {/* Notifications */}
+          <button className="relative p-2 rounded-full bg-card active:scale-95 transition-transform lg:hover:bg-muted">
+            <Bell className="w-5 h-5" />
+            <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-destructive rounded-full border-2 border-background" />
+          </button>
+        </div>
       </motion.header>
 
       {/* Desktop Grid Layout */}
