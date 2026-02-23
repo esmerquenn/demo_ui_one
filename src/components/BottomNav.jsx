@@ -3,11 +3,11 @@ import { Home, ClipboardList, Users, MoreHorizontal, QrCode } from 'lucide-react
 import { motion } from 'framer-motion'
 
 const navItems = [
-  { icon: Users, label: 'Dostlar', path: '/friends' },
-  { icon: MoreHorizontal, label: 'Daha cox', path: '/more' },
-  { icon: QrCode, label: 'QR', path: '/qr', isCenter: true },
   { icon: Home, label: 'Ana sehife', path: '/' },
   { icon: ClipboardList, label: 'Tapsirig', path: '/tasks' },
+  { icon: QrCode, label: 'QR', path: '/qr', isCenter: true },
+  { icon: Users, label: 'Dostlar', path: '/friends' },
+  { icon: MoreHorizontal, label: 'Daha cox', path: '/more' },
 ]
 
 export default function BottomNav() {
@@ -18,7 +18,7 @@ export default function BottomNav() {
   if (location.pathname.startsWith('/checks')) return null
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur-lg border-t border-border safe-bottom z-50">
+    <nav className="fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur-lg border-t border-border safe-bottom z-50 lg:hidden">
       <div className="flex items-end justify-around px-2 h-16 max-w-md mx-auto">
         {navItems.map((item) => {
           const Icon = item.icon

@@ -111,21 +111,21 @@ export default function QRPage() {
       </motion.header>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col lg:flex-row lg:gap-6">
         {/* QR Preview Area */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-card rounded-3xl p-6 mb-6 flex-1 flex flex-col items-center justify-center relative overflow-hidden"
+          className="bg-card rounded-3xl p-6 mb-6 lg:mb-0 flex-1 flex flex-col items-center justify-center relative overflow-hidden lg:min-h-[400px]"
         >
           {/* Decorative gradient */}
           <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-primary/10 via-accent/10 to-destructive/10 rounded-full blur-3xl" />
 
           <div className="relative z-10 text-center">
-            <div className="w-32 h-32 mx-auto mb-6 relative">
+            <div className="w-32 h-32 lg:w-48 lg:h-48 mx-auto mb-6 relative">
               <div className="absolute inset-0 border-2 border-dashed border-primary/30 rounded-2xl animate-pulse" />
               <div className="absolute inset-2 bg-[#162033] rounded-xl flex items-center justify-center">
-                <QrCode className="w-16 h-16 text-primary/50" />
+                <QrCode className="w-16 h-16 lg:w-24 lg:h-24 text-primary/50" />
               </div>
               {/* Corner accents */}
               <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary rounded-tl-lg" />
@@ -141,49 +141,55 @@ export default function QRPage() {
           </div>
         </motion.div>
 
-        {/* Scan Options */}
-        <div className="grid grid-cols-3 gap-3 mb-6">
-          {scanOptions.map((option, index) => {
-            const Icon = option.icon
-            return (
-              <motion.button
-                key={option.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                onClick={() => handleOptionSelect(option.id)}
-                whileTap={{ scale: 0.95 }}
-                className="bg-card rounded-2xl p-4 flex flex-col items-center text-center"
-              >
-                <div className={`w-12 h-12 ${option.color} rounded-xl flex items-center justify-center mb-3`}>
-                  <Icon className="w-6 h-6 text-white" />
-                </div>
-                <p className="font-medium text-sm">{option.title}</p>
-                <p className="text-xs text-muted-foreground mt-1">{option.description}</p>
-              </motion.button>
-            )
-          })}
-        </div>
-
-        {/* Info Card */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="bg-[#162033] rounded-xl p-4"
-        >
-          <div className="flex items-start gap-3">
-            <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center flex-shrink-0">
-              <Coins className="w-5 h-5 text-accent" />
-            </div>
-            <div>
-              <p className="font-medium">Xal qazanma qaydası</p>
-              <p className="text-sm text-muted-foreground mt-1">
-                Hər 1 ₼ alış-veriş = 1 xal. Upgrade aktivdirsə 2x xal qazanırsan!
-              </p>
-            </div>
+        {/* Right Column - Options & Info */}
+        <div className="lg:w-80 space-y-6">
+          {/* Scan Options */}
+          <div className="grid grid-cols-3 lg:grid-cols-1 gap-3">
+            {scanOptions.map((option, index) => {
+              const Icon = option.icon
+              return (
+                <motion.button
+                  key={option.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  onClick={() => handleOptionSelect(option.id)}
+                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.02 }}
+                  className="bg-card rounded-2xl p-4 flex flex-col lg:flex-row items-center text-center lg:text-left lg:gap-4"
+                >
+                  <div className={`w-12 h-12 ${option.color} rounded-xl flex items-center justify-center mb-3 lg:mb-0`}>
+                    <Icon className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-sm">{option.title}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{option.description}</p>
+                  </div>
+                </motion.button>
+              )
+            })}
           </div>
-        </motion.div>
+
+          {/* Info Card */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="bg-[#162033] rounded-xl p-4"
+          >
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Coins className="w-5 h-5 text-accent" />
+              </div>
+              <div>
+                <p className="font-medium">Xal qazanma qaydası</p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Hər 1 ₼ alış-veriş = 1 xal. Upgrade aktivdirsə 2x xal qazanırsan!
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Scanning Overlay */}

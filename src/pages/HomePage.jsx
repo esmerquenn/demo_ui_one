@@ -39,37 +39,51 @@ export default function HomePage() {
           <p className="text-muted-foreground text-sm">Salam</p>
           <h1 className="text-xl font-semibold">{user.name}</h1>
         </div>
-        <button className="relative p-2 rounded-full bg-card active:scale-95 transition-transform">
+        <button className="relative p-2 rounded-full bg-card active:scale-95 transition-transform lg:hover:bg-muted">
           <Bell className="w-6 h-6" />
           <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-destructive rounded-full border-2 border-background" />
         </button>
       </motion.header>
 
-      {/* Points Balance - Hero */}
-      <div className="mb-4">
-        <PointsBalance points={user.points} />
+      {/* Desktop Grid Layout */}
+      <div className="lg:grid lg:grid-cols-2 lg:gap-6">
+        {/* Left Column */}
+        <div className="space-y-4 lg:space-y-6">
+          {/* Points Balance - Hero */}
+          <PointsBalance points={user.points} />
+
+          {/* Stats Row - Friends & Upgrade */}
+          <StatsRow
+            friendsCount={user.friendsCount}
+            isUpgradeActive={user.isUpgradeActive}
+            upgradeExpiresAt={user.upgradeExpiresAt}
+          />
+
+          {/* Daily Spinner - Desktop only in left column */}
+          <div className="hidden lg:block">
+            <DailySpinner
+              isAvailable={user.dailySpinAvailable}
+              prizes={spinnerPrizes}
+              onSpin={handleSpin}
+            />
+          </div>
+        </div>
+
+        {/* Right Column */}
+        <div className="mt-4 lg:mt-0">
+          {/* Recent Checks */}
+          <RecentChecks checks={checks} />
+        </div>
       </div>
 
-      {/* Stats Row - Friends & Upgrade */}
-      <div className="mb-4">
-        <StatsRow
-          friendsCount={user.friendsCount}
-          isUpgradeActive={user.isUpgradeActive}
-          upgradeExpiresAt={user.upgradeExpiresAt}
+      {/* Daily Spinner - Mobile */}
+      <div className="mt-4 lg:hidden">
+        <DailySpinner
+          isAvailable={user.dailySpinAvailable}
+          prizes={spinnerPrizes}
+          onSpin={handleSpin}
         />
       </div>
-
-      {/* Recent Checks */}
-      <div className="mb-4">
-        <RecentChecks checks={checks} />
-      </div>
-
-      {/* Daily Spinner */}
-      <DailySpinner
-        isAvailable={user.dailySpinAvailable}
-        prizes={spinnerPrizes}
-        onSpin={handleSpin}
-      />
     </PageContainer>
   )
 }

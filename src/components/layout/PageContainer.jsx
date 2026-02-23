@@ -8,7 +8,10 @@ export function PageContainer({
   onRefresh,
 }) {
   const content = (
-    <div className={cn('px-4 pt-4 pb-24', className)}>
+    <div className={cn(
+      'px-4 pt-4 pb-24 lg:pb-8 lg:px-0 lg:pt-0',
+      className
+    )}>
       {children}
     </div>
   )

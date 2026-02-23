@@ -42,33 +42,46 @@ export default function FriendsPage() {
         </p>
       </motion.header>
 
-      {/* Referral Card - Code & Link */}
-      <div className="mb-6">
-        <ReferralCard
-          code={referralData.myCode}
-          link={referralData.myLink}
-        />
-      </div>
+      {/* Desktop Layout */}
+      <div className="lg:grid lg:grid-cols-2 lg:gap-6">
+        {/* Left Column */}
+        <div className="space-y-6">
+          {/* Referral Card - Code & Link */}
+          <ReferralCard
+            code={referralData.myCode}
+            link={referralData.myLink}
+          />
 
-      {/* Earnings Stats */}
-      <div className="mb-6">
-        <EarningsCard
-          totalEarnings={referralData.totalEarnings}
-          totalInvited={referralData.totalInvited}
-          pendingRewards={referralData.pendingRewards}
-        />
-      </div>
+          {/* Earnings Stats */}
+          <EarningsCard
+            totalEarnings={referralData.totalEarnings}
+            totalInvited={referralData.totalInvited}
+            pendingRewards={referralData.pendingRewards}
+          />
 
-      {/* Milestones */}
-      <div className="mb-6">
-        <Milestones
-          milestones={referralMilestones}
-          currentCount={referralData.totalInvited}
-        />
-      </div>
+          {/* Milestones - Desktop only in left */}
+          <div className="hidden lg:block">
+            <Milestones
+              milestones={referralMilestones}
+              currentCount={referralData.totalInvited}
+            />
+          </div>
+        </div>
 
-      {/* Invited Friends List */}
-      <InvitedList friends={invitedFriends} />
+        {/* Right Column */}
+        <div className="mt-6 lg:mt-0 space-y-6">
+          {/* Milestones - Mobile */}
+          <div className="lg:hidden">
+            <Milestones
+              milestones={referralMilestones}
+              currentCount={referralData.totalInvited}
+            />
+          </div>
+
+          {/* Invited Friends List */}
+          <InvitedList friends={invitedFriends} />
+        </div>
+      </div>
     </PageContainer>
   )
 }

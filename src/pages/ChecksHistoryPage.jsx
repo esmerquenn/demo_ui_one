@@ -101,18 +101,18 @@ export default function ChecksHistoryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background lg:ml-64">
       {/* Header */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-0 bg-background/95 backdrop-blur-lg border-b border-border z-40 px-4 py-3"
+        className="sticky top-0 bg-background/95 backdrop-blur-lg border-b border-border z-40 px-4 lg:px-6 py-3"
       >
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between max-w-4xl mx-auto">
           <div className="flex items-center gap-3">
             <button
               onClick={() => navigate(-1)}
-              className="p-2 -ml-2 rounded-full active:bg-card"
+              className="p-2 -ml-2 rounded-full active:bg-card lg:hover:bg-card"
             >
               <ArrowLeft className="w-6 h-6" />
             </button>
@@ -120,7 +120,7 @@ export default function ChecksHistoryPage() {
           </div>
           <button
             onClick={() => setShowFilters(true)}
-            className="p-2 rounded-full active:bg-card relative"
+            className="p-2 rounded-full active:bg-card lg:hover:bg-card relative"
           >
             <SlidersHorizontal className="w-5 h-5 text-muted-foreground" />
             {activeFiltersCount > 0 && (
@@ -133,7 +133,7 @@ export default function ChecksHistoryPage() {
       </motion.header>
 
       {/* Content */}
-      <div className="px-4 py-4">
+      <div className="px-4 lg:px-6 py-4 max-w-4xl mx-auto">
         {filteredChecks.length === 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
