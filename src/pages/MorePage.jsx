@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import {
   Settings,
   User,
@@ -13,39 +14,41 @@ import {
 } from 'lucide-react'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { ThemeToggle } from '@/components/shared/ThemeToggle'
+import { LanguageSelector } from '@/components/shared/LanguageSelector'
 import { useTheme } from '@/contexts/ThemeContext'
-
-const menuItems = [
-  {
-    id: 'profile',
-    icon: User,
-    label: 'Profil',
-    description: 'Şəxsi məlumatlar',
-    link: '/profile',
-  },
-  {
-    id: 'notifications',
-    icon: Bell,
-    label: 'Bildirişlər',
-    description: 'Bildiriş parametrləri',
-  },
-  {
-    id: 'privacy',
-    icon: Shield,
-    label: 'Gizlilik',
-    description: 'Məxfilik parametrləri',
-  },
-  {
-    id: 'help',
-    icon: HelpCircle,
-    label: 'Kömək',
-    description: 'FAQ və dəstək',
-  },
-]
 
 export default function MorePage() {
   const { isDark } = useTheme()
   const navigate = useNavigate()
+  const { t } = useTranslation()
+
+  const menuItems = [
+    {
+      id: 'profile',
+      icon: User,
+      label: t('more.menu.profile'),
+      description: t('more.menu.profileDesc'),
+      link: '/profile',
+    },
+    {
+      id: 'notifications',
+      icon: Bell,
+      label: t('more.menu.notifications'),
+      description: t('more.menu.notificationsDesc'),
+    },
+    {
+      id: 'privacy',
+      icon: Shield,
+      label: t('more.menu.privacy'),
+      description: t('more.menu.privacyDesc'),
+    },
+    {
+      id: 'help',
+      icon: HelpCircle,
+      label: t('more.menu.help'),
+      description: t('more.menu.helpDesc'),
+    },
+  ]
 
   const handleMenuClick = (item) => {
     if (item.link) {
@@ -63,10 +66,10 @@ export default function MorePage() {
       >
         <div className="flex items-center gap-2 mb-1">
           <Settings className="w-6 h-6 text-primary" />
-          <h1 className="text-xl font-semibold">Parametrlər</h1>
+          <h1 className="text-xl font-semibold">{t('more.title')}</h1>
         </div>
         <p className="text-sm text-muted-foreground">
-          Tətbiq ayarlarını idarə et
+          {t('more.subtitle')}
         </p>
       </motion.header>
 
@@ -75,7 +78,7 @@ export default function MorePage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-card rounded-xl p-4 mb-6"
+        className="bg-card rounded-xl p-4 mb-4"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -87,14 +90,24 @@ export default function MorePage() {
               )}
             </div>
             <div>
-              <p className="font-semibold">Tema</p>
+              <p className="font-semibold">{t('more.theme.title')}</p>
               <p className="text-sm text-muted-foreground">
-                {isDark ? 'Qaranlıq rejim' : 'İşıqlı rejim'}
+                {isDark ? t('more.theme.dark') : t('more.theme.light')}
               </p>
             </div>
           </div>
           <ThemeToggle />
         </div>
+      </motion.div>
+
+      {/* Language Selector Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.15 }}
+        className="bg-card rounded-xl p-4 mb-6"
+      >
+        <LanguageSelector />
       </motion.div>
 
       {/* Menu Items */}
@@ -140,7 +153,7 @@ export default function MorePage() {
         <div className="w-10 h-10 rounded-xl bg-destructive/20 flex items-center justify-center">
           <LogOut className="w-5 h-5 text-destructive" />
         </div>
-        <span className="font-medium text-destructive">Çıxış</span>
+        <span className="font-medium text-destructive">{t('more.logout')}</span>
       </motion.button>
 
       {/* App Version */}
@@ -150,7 +163,7 @@ export default function MorePage() {
         transition={{ delay: 0.5 }}
         className="text-center text-sm text-muted-foreground mt-8"
       >
-        Birbir v1.0.0
+        {t('more.version')}
       </motion.p>
     </PageContainer>
   )

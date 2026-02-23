@@ -1,0 +1,248 @@
+{
+  "common": {
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "close": "Закрыть",
+    "confirm": "Подтвердить",
+    "delete": "Удалить",
+    "edit": "Изменить",
+    "loading": "Загрузка...",
+    "error": "Ошибка",
+    "success": "Успешно",
+    "points": "баллов",
+    "day": "день",
+    "days": "дней",
+    "week": "неделя",
+    "month": "месяц",
+    "all": "Все"
+  },
+  "nav": {
+    "home": "Главная",
+    "tasks": "Задания",
+    "qr": "QR",
+    "friends": "Друзья",
+    "more": "Ещё"
+  },
+  "home": {
+    "greeting": "Привет",
+    "totalPoints": "Всего баллов",
+    "streak": {
+      "title": "Ежедневный Streak",
+      "thisWeek": "на этой неделе",
+      "keepGoing": "Продолжай! Завтра получишь +{{points}} баллов",
+      "completed": "Поздравляем! 7-дневный streak завершён!"
+    },
+    "stats": {
+      "friends": "Друзья",
+      "upgrade": "Апгрейд",
+      "active": "Активен",
+      "expiresOn": "До {{date}}"
+    },
+    "recentChecks": {
+      "title": "Последние чеки",
+      "viewAll": "Смотреть все",
+      "empty": "Чеков пока нет"
+    },
+    "spinner": {
+      "title": "Ежедневный Спин",
+      "spin": "Крутить",
+      "used": "Попробуй завтра",
+      "won": "Ты выиграл!"
+    }
+  },
+  "tasks": {
+    "title": "Задания",
+    "available": "{{count}} заданий доступно",
+    "filters": {
+      "all": "Все",
+      "link": "Ссылка",
+      "receipt": "Чек"
+    },
+    "stats": {
+      "available": "Доступно",
+      "completed": "Выполнено"
+    },
+    "card": {
+      "go": "Перейти",
+      "verify": "Проверить",
+      "completed": "Выполнено",
+      "participants": "{{count}} участников",
+      "endsOn": "До {{date}}"
+    },
+    "verification": {
+      "verifying": "Проверка...",
+      "checking": "Проверяем выполнение задания",
+      "success": "Поздравляем!",
+      "successDesc": "Задание успешно выполнено",
+      "addedToBalance": "Добавлено на баланс",
+      "failed": "Задание не выполнено",
+      "failedLink": "Выполнение задания не подтверждено. Попробуйте снова.",
+      "failedReceipt": "Подходящий чек не найден. Загрузите чек и попробуйте снова.",
+      "tryAgain": "Попробовать снова",
+      "uploadReceipt": "Загрузить чек"
+    },
+    "empty": "В этой категории нет заданий"
+  },
+  "friends": {
+    "title": "Друзья",
+    "subtitle": "Приглашай, зарабатывай, расти вместе!",
+    "referral": {
+      "myCode": "Мой код",
+      "myLink": "Моя ссылка",
+      "copy": "Копировать",
+      "copied": "Скопировано!",
+      "share": "Поделиться"
+    },
+    "earnings": {
+      "total": "Всего заработано",
+      "invited": "Приглашено",
+      "pending": "Ожидает"
+    },
+    "milestones": {
+      "title": "Цели",
+      "friends": "друзей",
+      "claimed": "Получено"
+    },
+    "invited": {
+      "title": "Мои приглашения",
+      "active": "Активен",
+      "pending": "Ожидает",
+      "inactive": "Неактивен",
+      "earned": "Заработано",
+      "empty": "Вы ещё никого не пригласили"
+    }
+  },
+  "qr": {
+    "title": "Сканировать чек",
+    "subtitle": "Сканируй чеки и зарабатывай баллы",
+    "selectMethod": "Выбери способ сканирования",
+    "scanQR": "Отсканируй QR-код на чеке и получи баллы",
+    "options": {
+      "camera": "QR Скан",
+      "cameraDesc": "Сканировать камерой",
+      "gallery": "Галерея",
+      "galleryDesc": "Выбрать фото",
+      "manual": "Вручную",
+      "manualDesc": "Ввести Fiscal ID"
+    },
+    "manual": {
+      "title": "Введите Fiscal ID",
+      "placeholder": "FI-2025-XXXX-XXXXXX",
+      "hint": "Введите Fiscal ID, расположенный внизу чека",
+      "verify": "Проверить"
+    },
+    "info": {
+      "title": "Как зарабатывать баллы",
+      "description": "Каждый 1 ₼ покупки = 1 балл. С активным Upgrade получаешь 2x баллов!"
+    },
+    "scanning": "Проверка...",
+    "gettingData": "Получаем данные чека",
+    "success": {
+      "title": "Успешно!",
+      "subtitle": "Чек успешно добавлен",
+      "amount": "Сумма",
+      "earned": "Получено",
+      "scanAnother": "Сканировать ещё",
+      "done": "Готово"
+    }
+  },
+  "checks": {
+    "title": "История чеков",
+    "detail": "Детали чека",
+    "empty": "Чеки не найдены",
+    "clearFilters": "Очистить фильтры",
+    "filters": {
+      "title": "Фильтры",
+      "store": "Магазин",
+      "amount": "Сумма",
+      "date": "Дата",
+      "dateFrom": "С",
+      "dateTo": "По",
+      "clear": "Очистить",
+      "apply": "Применить"
+    },
+    "summary": {
+      "total": "Всего чеков",
+      "amount": "Общая сумма",
+      "points": "Всего баллов"
+    },
+    "detail": {
+      "receiptImage": "Фото чека",
+      "noImage": "Фото чека нет",
+      "products": "Товары",
+      "tax": "НДС",
+      "total": "Итого",
+      "info": "Подробности",
+      "fiscalId": "Fiscal ID",
+      "date": "Дата",
+      "time": "Время",
+      "paymentMethod": "Способ оплаты",
+      "card": "Карта",
+      "cash": "Наличные",
+      "cashier": "Кассир",
+      "status": "Статус",
+      "confirmed": "Подтверждён",
+      "pending": "Ожидает"
+    }
+  },
+  "more": {
+    "title": "Настройки",
+    "subtitle": "Управление настройками приложения",
+    "theme": {
+      "title": "Тема",
+      "dark": "Тёмный режим",
+      "light": "Светлый режим"
+    },
+    "language": {
+      "title": "Язык",
+      "select": "Выбрать язык"
+    },
+    "menu": {
+      "profile": "Профиль",
+      "profileDesc": "Личные данные",
+      "notifications": "Уведомления",
+      "notificationsDesc": "Настройки уведомлений",
+      "privacy": "Конфиденциальность",
+      "privacyDesc": "Настройки приватности",
+      "help": "Помощь",
+      "helpDesc": "FAQ и поддержка"
+    },
+    "logout": "Выйти",
+    "version": "Birbir v1.0.0"
+  },
+  "profile": {
+    "title": "Профиль",
+    "memberSince": "Участник с {{date}}",
+    "fields": {
+      "name": "Имя Фамилия",
+      "phone": "Телефон",
+      "pin": "PIN-код"
+    },
+    "editName": "Изменить имя",
+    "editPhone": "Изменить телефон",
+    "changePin": {
+      "title": "Изменить PIN",
+      "current": "Введите текущий PIN",
+      "new": "Создайте новый PIN",
+      "confirm": "Подтвердите новый PIN",
+      "success": "PIN успешно изменён!",
+      "wrongCurrent": "Текущий PIN неверен",
+      "mismatch": "PIN-коды не совпадают",
+      "lengthError": "PIN должен быть 4 цифры"
+    },
+    "stats": {
+      "title": "Статистика",
+      "totalChecks": "Всего чеков",
+      "totalEarned": "Заработано баллов",
+      "totalSpent": "Потрачено",
+      "avgCheck": "Средний чек"
+    },
+    "achievements": {
+      "title": "Достижения",
+      "currentStreak": "Текущий streak",
+      "longestStreak": "Лучший streak",
+      "favoriteStore": "Любимый магазин",
+      "thisMonth": "В этом месяце"
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import {
   Home,
@@ -13,19 +14,20 @@ import {
 import { useTheme } from '@/contexts/ThemeContext'
 import { userData } from '@/data/mockData'
 
-const navItems = [
-  { icon: Home, label: 'Ana səhifə', path: '/' },
-  { icon: QrCode, label: 'QR Skan', path: '/qr' },
-  { icon: ClipboardList, label: 'Tapşırıqlar', path: '/tasks' },
-  { icon: Users, label: 'Dostlar', path: '/friends' },
-  { icon: Receipt, label: 'Çeklər', path: '/checks' },
-  { icon: Settings, label: 'Parametrlər', path: '/more' },
-]
-
 export default function Sidebar() {
   const location = useLocation()
   const navigate = useNavigate()
   const { isDark, toggleTheme } = useTheme()
+  const { t } = useTranslation()
+
+  const navItems = [
+    { icon: Home, label: t('nav.home'), path: '/' },
+    { icon: QrCode, label: t('qr.title'), path: '/qr' },
+    { icon: ClipboardList, label: t('nav.tasks'), path: '/tasks' },
+    { icon: Users, label: t('nav.friends'), path: '/friends' },
+    { icon: Receipt, label: t('checks.title'), path: '/checks' },
+    { icon: Settings, label: t('more.title'), path: '/more' },
+  ]
 
   return (
     <aside className="hidden lg:flex flex-col w-64 h-screen bg-card border-r border-border fixed left-0 top-0">
@@ -37,7 +39,7 @@ export default function Sidebar() {
           </div>
           <div>
             <h1 className="text-xl font-bold">Birbir</h1>
-            <p className="text-xs text-muted-foreground">Çek skan et, qazan!</p>
+            <p className="text-xs text-muted-foreground">{t('qr.subtitle')}</p>
           </div>
         </div>
       </div>
@@ -106,7 +108,7 @@ export default function Sidebar() {
           className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors"
         >
           <span className="text-sm text-muted-foreground">
-            {isDark ? 'Qaranlıq rejim' : 'İşıqlı rejim'}
+            {isDark ? t('more.theme.dark') : t('more.theme.light')}
           </span>
           <div className="w-12 h-6 rounded-full bg-card p-1 relative">
             <motion.div
@@ -117,7 +119,7 @@ export default function Sidebar() {
           </div>
         </button>
         <p className="text-xs text-center text-muted-foreground mt-4">
-          Birbir v1.0.0
+          {t('more.version')}
         </p>
       </div>
     </aside>

@@ -1,0 +1,248 @@
+{
+  "common": {
+    "save": "Yadda saxla",
+    "cancel": "Ləğv et",
+    "close": "Bağla",
+    "confirm": "Təsdiqlə",
+    "delete": "Sil",
+    "edit": "Düzəliş et",
+    "loading": "Yüklənir...",
+    "error": "Xəta",
+    "success": "Uğurlu",
+    "points": "xal",
+    "day": "gün",
+    "days": "gün",
+    "week": "həftə",
+    "month": "ay",
+    "all": "Hamısı"
+  },
+  "nav": {
+    "home": "Ana səhifə",
+    "tasks": "Tapşırıqlar",
+    "qr": "QR",
+    "friends": "Dostlar",
+    "more": "Daha çox"
+  },
+  "home": {
+    "greeting": "Salam",
+    "totalPoints": "Ümumi xalın",
+    "streak": {
+      "title": "Günlük Streak",
+      "thisWeek": "bu həftə",
+      "keepGoing": "Davam et! Sabah +{{points}} xal qazanacaqsan",
+      "completed": "Təbriklər! 7 günlük streak tamamlandı!"
+    },
+    "stats": {
+      "friends": "Dostlar",
+      "upgrade": "Upgrade",
+      "active": "Aktiv",
+      "expiresOn": "{{date}} tarixinə qədər"
+    },
+    "recentChecks": {
+      "title": "Son çeklər",
+      "viewAll": "Hamısına bax",
+      "empty": "Hələ çek yoxdur"
+    },
+    "spinner": {
+      "title": "Günlük Spin",
+      "spin": "Fırlat",
+      "used": "Sabah yenidən",
+      "won": "Qazandın!"
+    }
+  },
+  "tasks": {
+    "title": "Tapşırıqlar",
+    "available": "{{count}} tapşırıq mövcuddur",
+    "filters": {
+      "all": "Hamısı",
+      "link": "Link",
+      "receipt": "Çek"
+    },
+    "stats": {
+      "available": "Mövcud",
+      "completed": "Tamamlanan"
+    },
+    "card": {
+      "go": "Keç",
+      "verify": "Yoxla",
+      "completed": "Tamamlandı",
+      "participants": "{{count}} iştirakçı",
+      "endsOn": "{{date}} tarixinə qədər"
+    },
+    "verification": {
+      "verifying": "Yoxlanılır...",
+      "checking": "Tapşırığın yerinə yetirilməsi yoxlanılır",
+      "success": "Təbrik edirik!",
+      "successDesc": "Tapşırıq uğurla tamamlandı",
+      "addedToBalance": "Balansına əlavə edildi",
+      "failed": "Tapşırıq tamamlanmayıb",
+      "failedLink": "Tapşırığı yerinə yetirdiyiniz təsdiqlənmədi. Yenidən cəhd edin.",
+      "failedReceipt": "Tələblərə uyğun çek tapılmadı. Çek yükləyib yenidən yoxlayın.",
+      "tryAgain": "Yenidən keç",
+      "uploadReceipt": "Çek yüklə"
+    },
+    "empty": "Bu kateqoriyada tapşırıq yoxdur"
+  },
+  "friends": {
+    "title": "Dostlar",
+    "subtitle": "Dəvət et, qazan, birlikdə böyü!",
+    "referral": {
+      "myCode": "Mənim kodum",
+      "myLink": "Mənim linkim",
+      "copy": "Kopyala",
+      "copied": "Kopyalandı!",
+      "share": "Paylaş"
+    },
+    "earnings": {
+      "total": "Ümumi qazanc",
+      "invited": "Dəvət edilən",
+      "pending": "Gözləyən"
+    },
+    "milestones": {
+      "title": "Hədəflər",
+      "friends": "dost",
+      "claimed": "Alındı"
+    },
+    "invited": {
+      "title": "Dəvət etdiklərim",
+      "active": "Aktiv",
+      "pending": "Gözləyir",
+      "inactive": "Qeyri-aktiv",
+      "earned": "Qazandın",
+      "empty": "Hələ heç kəsi dəvət etməmisiniz"
+    }
+  },
+  "qr": {
+    "title": "Çek Skan",
+    "subtitle": "Çeki skan edərək xal qazan",
+    "selectMethod": "Skan üsulunu seç",
+    "scanQR": "Çekin üzərindəki QR kodu skan et və xal qazan",
+    "options": {
+      "camera": "QR Skan",
+      "cameraDesc": "Kamera ilə skan et",
+      "gallery": "Qalereyadan",
+      "galleryDesc": "Şəkil seç",
+      "manual": "Manual",
+      "manualDesc": "Fiskal ID daxil et"
+    },
+    "manual": {
+      "title": "Fiskal ID daxil et",
+      "placeholder": "FI-2025-XXXX-XXXXXX",
+      "hint": "Çekin altında yerləşən Fiskal ID-ni daxil edin",
+      "verify": "Yoxla"
+    },
+    "info": {
+      "title": "Xal qazanma qaydası",
+      "description": "Hər 1 ₼ alış-veriş = 1 xal. Upgrade aktivdirsə 2x xal qazanırsan!"
+    },
+    "scanning": "Yoxlanılır...",
+    "gettingData": "Çek məlumatları alınır",
+    "success": {
+      "title": "Uğurlu!",
+      "subtitle": "Çek uğurla əlavə edildi",
+      "amount": "Məbləğ",
+      "earned": "Qazandın",
+      "scanAnother": "Başqa skan",
+      "done": "Tamam"
+    }
+  },
+  "checks": {
+    "title": "Çek Tarixçəsi",
+    "detail": "Çek Detalları",
+    "empty": "Çek tapılmadı",
+    "clearFilters": "Filterləri təmizlə",
+    "filters": {
+      "title": "Filterlər",
+      "store": "Obyekt",
+      "amount": "Məbləğ",
+      "date": "Tarix",
+      "dateFrom": "Başlanğıc",
+      "dateTo": "Son",
+      "clear": "Təmizlə",
+      "apply": "Tətbiq et"
+    },
+    "summary": {
+      "total": "Ümumi çek",
+      "amount": "Ümumi məbləğ",
+      "points": "Ümumi xal"
+    },
+    "detail": {
+      "receiptImage": "Çek Şəkli",
+      "noImage": "Çek şəkli yoxdur",
+      "products": "Məhsullar",
+      "tax": "ƏDV",
+      "total": "Cəmi",
+      "info": "Ətraflı Məlumat",
+      "fiscalId": "Fiskal ID",
+      "date": "Tarix",
+      "time": "Saat",
+      "paymentMethod": "Ödəniş üsulu",
+      "card": "Kart",
+      "cash": "Nağd",
+      "cashier": "Kassir",
+      "status": "Status",
+      "confirmed": "Təsdiqlənib",
+      "pending": "Gözləmədə"
+    }
+  },
+  "more": {
+    "title": "Parametrlər",
+    "subtitle": "Tətbiq ayarlarını idarə et",
+    "theme": {
+      "title": "Tema",
+      "dark": "Qaranlıq rejim",
+      "light": "İşıqlı rejim"
+    },
+    "language": {
+      "title": "Dil",
+      "select": "Dil seç"
+    },
+    "menu": {
+      "profile": "Profil",
+      "profileDesc": "Şəxsi məlumatlar",
+      "notifications": "Bildirişlər",
+      "notificationsDesc": "Bildiriş parametrləri",
+      "privacy": "Gizlilik",
+      "privacyDesc": "Məxfilik parametrləri",
+      "help": "Kömək",
+      "helpDesc": "FAQ və dəstək"
+    },
+    "logout": "Çıxış",
+    "version": "Birbir v1.0.0"
+  },
+  "profile": {
+    "title": "Profil",
+    "memberSince": "{{date}}-dən üzv",
+    "fields": {
+      "name": "Ad Soyad",
+      "phone": "Telefon",
+      "pin": "PIN kod"
+    },
+    "editName": "Ad Soyad dəyiş",
+    "editPhone": "Telefon dəyiş",
+    "changePin": {
+      "title": "PIN dəyiş",
+      "current": "Cari PIN-i daxil edin",
+      "new": "Yeni PIN yaradın",
+      "confirm": "Yeni PIN-i təsdiqləyin",
+      "success": "PIN uğurla dəyişdirildi!",
+      "wrongCurrent": "Cari PIN yanlışdır",
+      "mismatch": "PIN-lər uyğun gəlmir",
+      "lengthError": "PIN 4 rəqəm olmalıdır"
+    },
+    "stats": {
+      "title": "Statistikalar",
+      "totalChecks": "Ümumi çek",
+      "totalEarned": "Qazanılan xal",
+      "totalSpent": "Xərclənən",
+      "avgCheck": "Orta çek"
+    },
+    "achievements": {
+      "title": "Nailiyyətlər",
+      "currentStreak": "Hazırki streak",
+      "longestStreak": "Ən uzun streak",
+      "favoriteStore": "Sevimli mağaza",
+      "thisMonth": "Bu ay"
+    }
+  }
+}

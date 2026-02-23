@@ -1,18 +1,20 @@
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Home, ClipboardList, Users, MoreHorizontal, QrCode } from 'lucide-react'
 import { motion } from 'framer-motion'
-
-const navItems = [
-  { icon: Home, label: 'Ana səhifə', path: '/' },
-  { icon: ClipboardList, label: 'Tapşırıq', path: '/tasks' },
-  { icon: QrCode, label: 'QR', path: '/qr', isCenter: true },
-  { icon: Users, label: 'Dostlar', path: '/friends' },
-  { icon: MoreHorizontal, label: 'Daha çox', path: '/more' },
-]
 
 export default function BottomNav() {
   const location = useLocation()
   const navigate = useNavigate()
+  const { t } = useTranslation()
+
+  const navItems = [
+    { icon: Home, label: t('nav.home'), path: '/' },
+    { icon: ClipboardList, label: t('nav.tasks'), path: '/tasks' },
+    { icon: QrCode, label: t('nav.qr'), path: '/qr', isCenter: true },
+    { icon: Users, label: t('nav.friends'), path: '/friends' },
+    { icon: MoreHorizontal, label: t('nav.more'), path: '/more' },
+  ]
 
   // Hide on checks pages
   if (location.pathname.startsWith('/checks')) return null

@@ -1,0 +1,248 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "points": "points",
+    "day": "day",
+    "days": "days",
+    "week": "week",
+    "month": "month",
+    "all": "All"
+  },
+  "nav": {
+    "home": "Home",
+    "tasks": "Tasks",
+    "qr": "QR",
+    "friends": "Friends",
+    "more": "More"
+  },
+  "home": {
+    "greeting": "Hello",
+    "totalPoints": "Total points",
+    "streak": {
+      "title": "Daily Streak",
+      "thisWeek": "this week",
+      "keepGoing": "Keep going! Tomorrow you'll earn +{{points}} points",
+      "completed": "Congratulations! 7-day streak completed!"
+    },
+    "stats": {
+      "friends": "Friends",
+      "upgrade": "Upgrade",
+      "active": "Active",
+      "expiresOn": "Until {{date}}"
+    },
+    "recentChecks": {
+      "title": "Recent receipts",
+      "viewAll": "View all",
+      "empty": "No receipts yet"
+    },
+    "spinner": {
+      "title": "Daily Spin",
+      "spin": "Spin",
+      "used": "Try again tomorrow",
+      "won": "You won!"
+    }
+  },
+  "tasks": {
+    "title": "Tasks",
+    "available": "{{count}} tasks available",
+    "filters": {
+      "all": "All",
+      "link": "Link",
+      "receipt": "Receipt"
+    },
+    "stats": {
+      "available": "Available",
+      "completed": "Completed"
+    },
+    "card": {
+      "go": "Go",
+      "verify": "Verify",
+      "completed": "Completed",
+      "participants": "{{count}} participants",
+      "endsOn": "Until {{date}}"
+    },
+    "verification": {
+      "verifying": "Verifying...",
+      "checking": "Checking task completion",
+      "success": "Congratulations!",
+      "successDesc": "Task completed successfully",
+      "addedToBalance": "Added to your balance",
+      "failed": "Task not completed",
+      "failedLink": "Task completion could not be verified. Please try again.",
+      "failedReceipt": "No matching receipt found. Upload a receipt and try again.",
+      "tryAgain": "Try again",
+      "uploadReceipt": "Upload receipt"
+    },
+    "empty": "No tasks in this category"
+  },
+  "friends": {
+    "title": "Friends",
+    "subtitle": "Invite, earn, grow together!",
+    "referral": {
+      "myCode": "My code",
+      "myLink": "My link",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "share": "Share"
+    },
+    "earnings": {
+      "total": "Total earnings",
+      "invited": "Invited",
+      "pending": "Pending"
+    },
+    "milestones": {
+      "title": "Goals",
+      "friends": "friends",
+      "claimed": "Claimed"
+    },
+    "invited": {
+      "title": "My invites",
+      "active": "Active",
+      "pending": "Pending",
+      "inactive": "Inactive",
+      "earned": "Earned",
+      "empty": "You haven't invited anyone yet"
+    }
+  },
+  "qr": {
+    "title": "Scan Receipt",
+    "subtitle": "Scan receipts to earn points",
+    "selectMethod": "Select scan method",
+    "scanQR": "Scan the QR code on your receipt to earn points",
+    "options": {
+      "camera": "QR Scan",
+      "cameraDesc": "Scan with camera",
+      "gallery": "Gallery",
+      "galleryDesc": "Select image",
+      "manual": "Manual",
+      "manualDesc": "Enter Fiscal ID"
+    },
+    "manual": {
+      "title": "Enter Fiscal ID",
+      "placeholder": "FI-2025-XXXX-XXXXXX",
+      "hint": "Enter the Fiscal ID located at the bottom of your receipt",
+      "verify": "Verify"
+    },
+    "info": {
+      "title": "How to earn points",
+      "description": "Every 1 ₼ spent = 1 point. With Upgrade active, earn 2x points!"
+    },
+    "scanning": "Verifying...",
+    "gettingData": "Getting receipt data",
+    "success": {
+      "title": "Success!",
+      "subtitle": "Receipt added successfully",
+      "amount": "Amount",
+      "earned": "Earned",
+      "scanAnother": "Scan another",
+      "done": "Done"
+    }
+  },
+  "checks": {
+    "title": "Receipt History",
+    "detail": "Receipt Details",
+    "empty": "No receipts found",
+    "clearFilters": "Clear filters",
+    "filters": {
+      "title": "Filters",
+      "store": "Store",
+      "amount": "Amount",
+      "date": "Date",
+      "dateFrom": "From",
+      "dateTo": "To",
+      "clear": "Clear",
+      "apply": "Apply"
+    },
+    "summary": {
+      "total": "Total receipts",
+      "amount": "Total amount",
+      "points": "Total points"
+    },
+    "detail": {
+      "receiptImage": "Receipt Image",
+      "noImage": "No receipt image",
+      "products": "Products",
+      "tax": "Tax",
+      "total": "Total",
+      "info": "Details",
+      "fiscalId": "Fiscal ID",
+      "date": "Date",
+      "time": "Time",
+      "paymentMethod": "Payment method",
+      "card": "Card",
+      "cash": "Cash",
+      "cashier": "Cashier",
+      "status": "Status",
+      "confirmed": "Confirmed",
+      "pending": "Pending"
+    }
+  },
+  "more": {
+    "title": "Settings",
+    "subtitle": "Manage app settings",
+    "theme": {
+      "title": "Theme",
+      "dark": "Dark mode",
+      "light": "Light mode"
+    },
+    "language": {
+      "title": "Language",
+      "select": "Select language"
+    },
+    "menu": {
+      "profile": "Profile",
+      "profileDesc": "Personal information",
+      "notifications": "Notifications",
+      "notificationsDesc": "Notification settings",
+      "privacy": "Privacy",
+      "privacyDesc": "Privacy settings",
+      "help": "Help",
+      "helpDesc": "FAQ and support"
+    },
+    "logout": "Log out",
+    "version": "Birbir v1.0.0"
+  },
+  "profile": {
+    "title": "Profile",
+    "memberSince": "Member since {{date}}",
+    "fields": {
+      "name": "Full Name",
+      "phone": "Phone",
+      "pin": "PIN code"
+    },
+    "editName": "Change Name",
+    "editPhone": "Change Phone",
+    "changePin": {
+      "title": "Change PIN",
+      "current": "Enter current PIN",
+      "new": "Create new PIN",
+      "confirm": "Confirm new PIN",
+      "success": "PIN changed successfully!",
+      "wrongCurrent": "Current PIN is incorrect",
+      "mismatch": "PINs do not match",
+      "lengthError": "PIN must be 4 digits"
+    },
+    "stats": {
+      "title": "Statistics",
+      "totalChecks": "Total receipts",
+      "totalEarned": "Points earned",
+      "totalSpent": "Total spent",
+      "avgCheck": "Average receipt"
+    },
+    "achievements": {
+      "title": "Achievements",
+      "currentStreak": "Current streak",
+      "longestStreak": "Longest streak",
+      "favoriteStore": "Favorite store",
+      "thisMonth": "This month"
+    }
+  }
+}

@@ -1,8 +1,10 @@
 import { useState, useCallback } from 'react'
 import { Bell, Sun, Moon } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { PointsBalance, StatsRow, RecentChecks, DailySpinner, DailyStreak } from '@/features/home'
+import { LanguageSelector } from '@/components/shared/LanguageSelector'
 import { userData, recentChecks, spinnerPrizes, streakData } from '@/data/mockData'
 import { useTheme } from '@/contexts/ThemeContext'
 
@@ -11,6 +13,7 @@ export default function HomePage() {
   const [checks, setChecks] = useState(recentChecks)
   const [isRefreshing, setIsRefreshing] = useState(false)
   const { isDark, toggleTheme } = useTheme()
+  const { t } = useTranslation()
 
   const handleRefresh = useCallback(async () => {
     setIsRefreshing(true)
@@ -38,10 +41,13 @@ export default function HomePage() {
         className="flex items-center justify-between mb-6"
       >
         <div>
-          <p className="text-muted-foreground text-sm">Salam</p>
+          <p className="text-muted-foreground text-sm">{t('home.greeting')}</p>
           <h1 className="text-xl font-semibold">{user.name}</h1>
         </div>
         <div className="flex items-center gap-2">
+          {/* Language Selector */}
+          <LanguageSelector compact />
+
           {/* Theme Toggle */}
           <motion.button
             onClick={toggleTheme}
