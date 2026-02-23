@@ -8,6 +8,7 @@ import MorePage from './pages/MorePage'
 import QRPage from './pages/QRPage'
 import ChecksHistoryPage from './pages/ChecksHistoryPage'
 import CheckDetailPage from './pages/CheckDetailPage'
+import ProfilePage from './pages/ProfilePage'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/qr" element={<QRPage />} />
             <Route path="/checks" element={<ChecksHistoryPage />} />
             <Route path="/checks/:id" element={<CheckDetailPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </AnimatePresence>
         <BottomNav />

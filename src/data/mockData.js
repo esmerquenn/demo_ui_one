@@ -2,6 +2,8 @@
 export const userData = {
   id: 1,
   name: 'Əli',
+  surname: 'Məmmədov',
+  phone: '+994 50 123 45 67',
   avatar: null,
   points: 2450,
   friendsCount: 24,
@@ -9,6 +11,20 @@ export const userData = {
   upgradeExpiresAt: '2025-03-15',
   dailySpinAvailable: true,
   lastSpinAt: null,
+  joinedAt: '2024-12-15T10:30:00',
+}
+
+// User statistics
+export const userStats = {
+  totalChecks: 48,
+  totalSpent: 4520.80,
+  totalEarned: 2450,
+  avgCheckAmount: 94.18,
+  favoriteStore: 'Bravo Supermarket',
+  thisMonthChecks: 12,
+  thisMonthPoints: 680,
+  streak: 5, // ardıcıl gün
+  longestStreak: 14,
 }
 
 // Son çeklər - detailed
