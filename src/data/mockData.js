@@ -27,6 +27,23 @@ export const userStats = {
   longestStreak: 14,
 }
 
+// Daily Streak data
+export const streakData = {
+  currentDay: 5, // hazırda 5-ci gündə
+  lastCheckDate: '2025-02-23', // son çek skan edilən tarix
+  bonusDay: 4, // 4-cü gün bonus gündür (10-15 xal)
+  days: [
+    { day: 1, points: 1, isCompleted: true, date: '2025-02-19' },
+    { day: 2, points: 2, isCompleted: true, date: '2025-02-20' },
+    { day: 3, points: 3, isCompleted: true, date: '2025-02-21' },
+    { day: 4, points: 12, isCompleted: true, date: '2025-02-22', isBonus: true }, // Bonus gün
+    { day: 5, points: 5, isCompleted: true, date: '2025-02-23' },
+    { day: 6, points: 6, isCompleted: false, date: null },
+    { day: 7, points: 7, isCompleted: false, date: null },
+  ],
+  totalEarnedThisWeek: 23, // 1+2+3+12+5 = 23
+}
+
 // Son çeklər - detailed
 export const recentChecks = [
   {

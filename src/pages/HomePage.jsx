@@ -2,8 +2,8 @@ import { useState, useCallback } from 'react'
 import { Bell } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { PageContainer } from '@/components/layout/PageContainer'
-import { PointsBalance, StatsRow, RecentChecks, DailySpinner } from '@/features/home'
-import { userData, recentChecks, spinnerPrizes } from '@/data/mockData'
+import { PointsBalance, StatsRow, RecentChecks, DailySpinner, DailyStreak } from '@/features/home'
+import { userData, recentChecks, spinnerPrizes, streakData } from '@/data/mockData'
 
 export default function HomePage() {
   const [user, setUser] = useState(userData)
@@ -51,6 +51,9 @@ export default function HomePage() {
         <div className="space-y-4 lg:space-y-6">
           {/* Points Balance - Hero */}
           <PointsBalance points={user.points} />
+
+          {/* Daily Streak */}
+          <DailyStreak streakData={streakData} />
 
           {/* Stats Row - Friends & Upgrade */}
           <StatsRow
