@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { Gift, Sparkles } from 'lucide-react'
 
 export function DailySpinner({ isAvailable, prizes, onSpin }) {
+  const { t } = useTranslation()
   const [isSpinning, setIsSpinning] = useState(false)
   const [result, setResult] = useState(null)
 
@@ -37,11 +39,11 @@ export function DailySpinner({ isAvailable, prizes, onSpin }) {
           </div>
           <div>
             <h3 className="font-semibold flex items-center gap-2">
-              Gündəlik Çarx
+              {t('home.spinner.title')}
               <Sparkles className="w-4 h-4 text-accent" />
             </h3>
             <p className="text-sm text-muted-foreground">
-              {isAvailable ? 'Çarxı çevir, xal qazan!' : 'Sabah yenidən gəl'}
+              {isAvailable ? t('home.spinner.subtitle') : t('home.spinner.subtitleUsed')}
             </p>
           </div>
         </div>
@@ -55,12 +57,12 @@ export function DailySpinner({ isAvailable, prizes, onSpin }) {
               exit={{ opacity: 0, scale: 0.8 }}
               className="text-center py-4"
             >
-              <p className="text-muted-foreground text-sm mb-1">Təbrik edirik!</p>
+              <p className="text-muted-foreground text-sm mb-1">{t('home.spinner.congrats')}</p>
               <p className="text-2xl font-bold" style={{ color: result.color }}>
                 {result.label}
               </p>
               {result.type !== 'empty' && (
-                <p className="text-sm text-accent mt-1">Balansına əlavə edildi</p>
+                <p className="text-sm text-accent mt-1">{t('home.spinner.addedToBalance')}</p>
               )}
             </motion.div>
           ) : (
@@ -84,9 +86,9 @@ export function DailySpinner({ isAvailable, prizes, onSpin }) {
                   🎡
                 </motion.span>
               ) : isAvailable ? (
-                'Çarxı Çevir'
+                t('home.spinner.spin')
               ) : (
-                'Gözləyin...'
+                t('home.spinner.spinning')
               )}
             </motion.button>
           )}

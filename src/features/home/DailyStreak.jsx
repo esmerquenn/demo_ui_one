@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { Flame, Gift, Check, Coins } from 'lucide-react'
 
 export function DailyStreak({ streakData }) {
+  const { t } = useTranslation()
   const { currentDay, days, totalEarnedThisWeek } = streakData
 
   return (
@@ -17,9 +19,9 @@ export function DailyStreak({ streakData }) {
             <Flame className="w-5 h-5 text-orange-500" />
           </div>
           <div>
-            <h3 className="font-semibold">Günlük Streak</h3>
+            <h3 className="font-semibold">{t('home.streak.title')}</h3>
             <p className="text-xs text-muted-foreground">
-              {currentDay}/7 gün
+              {currentDay}/7 {t('common.days')}
             </p>
           </div>
         </div>
@@ -28,7 +30,7 @@ export function DailyStreak({ streakData }) {
             <Coins className="w-4 h-4" />
             +{totalEarnedThisWeek}
           </div>
-          <p className="text-xs text-muted-foreground">bu həftə</p>
+          <p className="text-xs text-muted-foreground">{t('home.streak.thisWeek')}</p>
         </div>
       </div>
 
@@ -113,8 +115,8 @@ export function DailyStreak({ streakData }) {
       {/* Info text */}
       <p className="text-xs text-muted-foreground text-center mt-3">
         {currentDay < 7
-          ? `Davam et! Sabah +${days[currentDay]?.points || 6} xal qazanacaqsan`
-          : 'Təbriklər! 7 günlük streak tamamlandı!'
+          ? t('home.streak.keepGoing', { points: days[currentDay]?.points || 6 })
+          : t('home.streak.completed')
         }
       </p>
     </motion.div>

@@ -14,7 +14,9 @@
     "days": "days",
     "week": "week",
     "month": "month",
-    "all": "All"
+    "all": "All",
+    "today": "Today",
+    "yesterday": "Yesterday"
   },
   "nav": {
     "home": "Home",
@@ -44,9 +46,13 @@
       "empty": "No receipts yet"
     },
     "spinner": {
-      "title": "Daily Spin",
-      "spin": "Spin",
-      "used": "Try again tomorrow",
+      "title": "Daily Wheel",
+      "subtitle": "Spin the wheel, earn points!",
+      "subtitleUsed": "Come back tomorrow",
+      "spin": "Spin the Wheel",
+      "spinning": "Please wait...",
+      "congrats": "Congratulations!",
+      "addedToBalance": "Added to your balance",
       "won": "You won!"
     }
   },

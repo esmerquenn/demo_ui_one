@@ -14,7 +14,9 @@
     "days": "gün",
     "week": "həftə",
     "month": "ay",
-    "all": "Hamısı"
+    "all": "Hamısı",
+    "today": "Bugün",
+    "yesterday": "Dünən"
   },
   "nav": {
     "home": "Ana səhifə",
@@ -44,9 +46,13 @@
       "empty": "Hələ çek yoxdur"
     },
     "spinner": {
-      "title": "Günlük Spin",
-      "spin": "Fırlat",
-      "used": "Sabah yenidən",
+      "title": "Gündəlik Çarx",
+      "subtitle": "Çarxı çevir, xal qazan!",
+      "subtitleUsed": "Sabah yenidən gəl",
+      "spin": "Çarxı Çevir",
+      "spinning": "Gözləyin...",
+      "congrats": "Təbrik edirik!",
+      "addedToBalance": "Balansına əlavə edildi",
       "won": "Qazandın!"
     }
   },

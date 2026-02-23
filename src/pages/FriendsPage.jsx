@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { Users } from 'lucide-react'
 import { PageContainer } from '@/components/layout/PageContainer'
 import {
@@ -15,6 +16,7 @@ import {
 } from '@/data/mockData'
 
 export default function FriendsPage() {
+  const { t } = useTranslation()
   const [isRefreshing, setIsRefreshing] = useState(false)
 
   const handleRefresh = useCallback(async () => {
@@ -35,10 +37,10 @@ export default function FriendsPage() {
       >
         <div className="flex items-center gap-2 mb-1">
           <Users className="w-6 h-6 text-primary" />
-          <h1 className="text-xl font-semibold">Dostlar</h1>
+          <h1 className="text-xl font-semibold">{t('friends.title')}</h1>
         </div>
         <p className="text-sm text-muted-foreground">
-          Dəvət et, qazan, birlikdə böyü!
+          {t('friends.subtitle')}
         </p>
       </motion.header>
 

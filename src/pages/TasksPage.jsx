@@ -1,6 +1,7 @@
 import { useState, useMemo, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import {
   ClipboardList,
   Coins,
@@ -16,6 +17,7 @@ import { TaskCard, TaskFilters } from '@/features/tasks'
 import { tasks as initialTasks, allChecks } from '@/data/mockData'
 
 export default function TasksPage() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [tasks, setTasks] = useState(initialTasks)
   const [activeFilter, setActiveFilter] = useState('all')
@@ -173,14 +175,14 @@ export default function TasksPage() {
         className="mb-6"
       >
         <div className="flex items-center justify-between mb-2">
-          <h1 className="text-xl font-semibold">Tapşırıqlar</h1>
+          <h1 className="text-xl font-semibold">{t('tasks.title')}</h1>
           <div className="flex items-center gap-1 text-accent">
             <Coins className="w-5 h-5" />
             <span className="font-semibold">+{stats.totalReward}</span>
           </div>
         </div>
         <p className="text-sm text-muted-foreground">
-          {stats.available} tapşırıq mövcuddur
+          {t('tasks.available', { count: stats.available })}
         </p>
       </motion.header>
 
@@ -194,14 +196,14 @@ export default function TasksPage() {
         <div className="bg-card rounded-xl p-4">
           <div className="flex items-center gap-2 mb-1">
             <ClipboardList className="w-5 h-5 text-primary" />
-            <span className="text-sm text-muted-foreground">Mövcud</span>
+            <span className="text-sm text-muted-foreground">{t('tasks.stats.available')}</span>
           </div>
           <p className="text-2xl font-bold">{stats.available}</p>
         </div>
         <div className="bg-card rounded-xl p-4">
           <div className="flex items-center gap-2 mb-1">
             <CheckCircle2 className="w-5 h-5 text-accent" />
-            <span className="text-sm text-muted-foreground">Tamamlanan</span>
+            <span className="text-sm text-muted-foreground">{t('tasks.stats.completed')}</span>
           </div>
           <p className="text-2xl font-bold">{stats.completed}</p>
         </div>
@@ -230,7 +232,7 @@ export default function TasksPage() {
             className="text-center py-12 lg:col-span-2"
           >
             <ClipboardList className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
-            <p className="text-muted-foreground">Bu kateqoriyada tapşırıq yoxdur</p>
+            <p className="text-muted-foreground">{t('tasks.empty')}</p>
           </motion.div>
         ) : (
           filteredTasks.map((task, index) => (
@@ -267,9 +269,9 @@ export default function TasksPage() {
               >
                 <Loader2 className="w-16 h-16 text-primary" />
               </motion.div>
-              <h2 className="text-lg font-semibold mb-2">Yoxlanılır...</h2>
+              <h2 className="text-lg font-semibold mb-2">{t('tasks.verification.verifying')}</h2>
               <p className="text-sm text-muted-foreground">
-                Tapşırığın yerinə yetirilməsi yoxlanılır
+                {t('tasks.verification.checking')}
               </p>
             </motion.div>
           </motion.div>
@@ -306,14 +308,14 @@ export default function TasksPage() {
               </motion.div>
 
               <div className="text-center mb-6">
-                <h2 className="text-xl font-bold mb-1">Təbrik edirik!</h2>
-                <p className="text-muted-foreground">Tapşırıq uğurla tamamlandı</p>
+                <h2 className="text-xl font-bold mb-1">{t('tasks.verification.success')}</h2>
+                <p className="text-muted-foreground">{t('tasks.verification.successDesc')}</p>
               </div>
 
               <div className="hero-gradient rounded-xl p-4 mb-6 text-center">
-                <p className="text-white/80 text-sm mb-1">Balansına əlavə edildi</p>
+                <p className="text-white/80 text-sm mb-1">{t('tasks.verification.addedToBalance')}</p>
                 <p className="text-2xl font-bold text-white flex items-center justify-center gap-2">
-                  +{verificationResult.task.reward} xal
+                  +{verificationResult.task.reward} {t('common.points')}
                   <Coins className="w-6 h-6" />
                 </p>
               </div>
@@ -322,7 +324,7 @@ export default function TasksPage() {
                 onClick={closeModal}
                 className="w-full py-3 rounded-xl bg-primary text-white font-medium"
               >
-                Tamam
+                {t('common.confirm')}
               </button>
             </motion.div>
           </>
@@ -358,11 +360,11 @@ export default function TasksPage() {
               </div>
 
               <div className="text-center mb-6">
-                <h2 className="text-lg font-bold mb-1">Tapşırıq tamamlanmayıb</h2>
+                <h2 className="text-lg font-bold mb-1">{t('tasks.verification.failed')}</h2>
                 <p className="text-sm text-muted-foreground">
                   {verificationResult.task.link
-                    ? 'Tapşırığı yerinə yetirdiyiniz təsdiqlənmədi. Yenidən cəhd edin.'
-                    : 'Tələblərə uyğun çek tapılmadı. Çek yükləyib yenidən yoxlayın.'}
+                    ? t('tasks.verification.failedLink')
+                    : t('tasks.verification.failedReceipt')}
                 </p>
               </div>
 
@@ -371,7 +373,7 @@ export default function TasksPage() {
                   onClick={closeModal}
                   className="flex-1 py-3 rounded-xl bg-muted text-muted-foreground font-medium"
                 >
-                  Bağla
+                  {t('common.close')}
                 </button>
                 {!verificationResult.task.link && (
                   <button
@@ -382,7 +384,7 @@ export default function TasksPage() {
                     className="flex-1 py-3 rounded-xl bg-primary text-white font-medium flex items-center justify-center gap-2"
                   >
                     <Receipt className="w-5 h-5" />
-                    Çek yüklə
+                    {t('tasks.verification.uploadReceipt')}
                   </button>
                 )}
                 {verificationResult.task.link && (
@@ -394,7 +396,7 @@ export default function TasksPage() {
                     className="flex-1 py-3 rounded-xl bg-primary text-white font-medium flex items-center justify-center gap-2"
                   >
                     <ExternalLink className="w-5 h-5" />
-                    Yenidən keç
+                    {t('tasks.verification.tryAgain')}
                   </button>
                 )}
               </div>

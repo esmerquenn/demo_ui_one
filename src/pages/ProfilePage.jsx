@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import {
   User,
   Phone,
@@ -23,6 +24,7 @@ import { PageContainer } from '@/components/layout/PageContainer'
 import { userData, userStats } from '@/data/mockData'
 
 export default function ProfilePage() {
+  const { t, i18n } = useTranslation()
   const navigate = useNavigate()
   const [showPinModal, setShowPinModal] = useState(false)
   const [editField, setEditField] = useState(null) // 'name' | 'phone'
@@ -35,28 +37,28 @@ export default function ProfilePage() {
   const stats = [
     {
       icon: Receipt,
-      label: 'Ümumi çek',
+      label: t('profile.stats.totalChecks'),
       value: userStats.totalChecks,
       color: 'text-primary',
       bgColor: 'bg-primary/20',
     },
     {
       icon: Coins,
-      label: 'Qazanılan xal',
+      label: t('profile.stats.totalEarned'),
       value: userStats.totalEarned.toLocaleString(),
       color: 'text-accent',
       bgColor: 'bg-accent/20',
     },
     {
       icon: BarChart3,
-      label: 'Xərclənən',
+      label: t('profile.stats.totalSpent'),
       value: `${userStats.totalSpent.toFixed(0)}₼`,
       color: 'text-destructive',
       bgColor: 'bg-destructive/20',
     },
     {
       icon: Store,
-      label: 'Orta çek',
+      label: t('profile.stats.avgCheck'),
       value: `${userStats.avgCheckAmount.toFixed(0)}₼`,
       color: 'text-amber-500',
       bgColor: 'bg-amber-500/20',
@@ -66,29 +68,29 @@ export default function ProfilePage() {
   const achievements = [
     {
       icon: Flame,
-      label: 'Hazırki streak',
-      value: `${userStats.streak} gün`,
+      label: t('profile.achievements.currentStreak'),
+      value: `${userStats.streak} ${t('common.days')}`,
       color: 'text-orange-500',
       bgColor: 'bg-orange-500/20',
     },
     {
       icon: Trophy,
-      label: 'Ən uzun streak',
-      value: `${userStats.longestStreak} gün`,
+      label: t('profile.achievements.longestStreak'),
+      value: `${userStats.longestStreak} ${t('common.days')}`,
       color: 'text-amber-500',
       bgColor: 'bg-amber-500/20',
     },
     {
       icon: Store,
-      label: 'Sevimli mağaza',
+      label: t('profile.achievements.favoriteStore'),
       value: userStats.favoriteStore.split(' ')[0],
       color: 'text-primary',
       bgColor: 'bg-primary/20',
     },
     {
       icon: Calendar,
-      label: 'Bu ay',
-      value: `${userStats.thisMonthChecks} çek`,
+      label: t('profile.achievements.thisMonth'),
+      value: `${userStats.thisMonthChecks} ${t('checks.summary.total').toLowerCase().split(' ')[0]}`,
       color: 'text-accent',
       bgColor: 'bg-accent/20',
     },
@@ -108,7 +110,7 @@ export default function ProfilePage() {
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
-        <h1 className="text-xl font-semibold">Profil</h1>
+        <h1 className="text-xl font-semibold">{t('profile.title')}</h1>
       </motion.header>
 
       {/* Avatar & Name */}
@@ -127,10 +129,12 @@ export default function ProfilePage() {
         </div>
         <h2 className="text-xl font-semibold">{userData.name} {userData.surname}</h2>
         <p className="text-sm text-muted-foreground">
-          {new Date(userData.joinedAt).toLocaleDateString('az-AZ', {
-            month: 'long',
-            year: 'numeric'
-          })}-dən üzv
+          {t('profile.memberSince', {
+            date: new Date(userData.joinedAt).toLocaleDateString(
+              i18n.language === 'az' ? 'az-AZ' : i18n.language === 'ru' ? 'ru-RU' : 'en-US',
+              { month: 'long', year: 'numeric' }
+            )
+          })}
         </p>
       </motion.div>
 
@@ -150,7 +154,7 @@ export default function ProfilePage() {
             <User className="w-5 h-5 text-primary" />
           </div>
           <div className="flex-1 text-left">
-            <p className="text-sm text-muted-foreground">Ad Soyad</p>
+            <p className="text-sm text-muted-foreground">{t('profile.fields.name')}</p>
             <p className="font-medium">{formData.name} {formData.surname}</p>
           </div>
           <Edit3 className="w-5 h-5 text-muted-foreground" />
@@ -165,7 +169,7 @@ export default function ProfilePage() {
             <Phone className="w-5 h-5 text-accent" />
           </div>
           <div className="flex-1 text-left">
-            <p className="text-sm text-muted-foreground">Telefon</p>
+            <p className="text-sm text-muted-foreground">{t('profile.fields.phone')}</p>
             <p className="font-medium">{formData.phone}</p>
           </div>
           <Edit3 className="w-5 h-5 text-muted-foreground" />
@@ -180,7 +184,7 @@ export default function ProfilePage() {
             <Lock className="w-5 h-5 text-destructive" />
           </div>
           <div className="flex-1 text-left">
-            <p className="text-sm text-muted-foreground">PIN kod</p>
+            <p className="text-sm text-muted-foreground">{t('profile.fields.pin')}</p>
             <p className="font-medium">••••</p>
           </div>
           <ChevronRight className="w-5 h-5 text-muted-foreground" />
@@ -198,7 +202,7 @@ export default function ProfilePage() {
         >
           <h3 className="font-semibold mb-3 flex items-center gap-2">
             <BarChart3 className="w-5 h-5 text-primary" />
-            Statistikalar
+            {t('profile.stats.title')}
           </h3>
           <div className="grid grid-cols-2 gap-3">
             {stats.map((stat, index) => {
@@ -230,7 +234,7 @@ export default function ProfilePage() {
         >
           <h3 className="font-semibold mb-3 flex items-center gap-2">
             <Trophy className="w-5 h-5 text-amber-500" />
-            Nailiyyətlər
+            {t('profile.achievements.title')}
           </h3>
           <div className="grid grid-cols-2 gap-3">
           {achievements.map((item, index) => {
@@ -266,6 +270,7 @@ export default function ProfilePage() {
               setEditField(null)
             }}
             onClose={() => setEditField(null)}
+            t={t}
           />
         )}
       </AnimatePresence>
@@ -280,6 +285,7 @@ export default function ProfilePage() {
               setEditField(null)
             }}
             onClose={() => setEditField(null)}
+            t={t}
           />
         )}
       </AnimatePresence>
@@ -287,7 +293,7 @@ export default function ProfilePage() {
       {/* PIN Modal */}
       <AnimatePresence>
         {showPinModal && (
-          <ChangePinModal onClose={() => setShowPinModal(false)} />
+          <ChangePinModal onClose={() => setShowPinModal(false)} t={t} />
         )}
       </AnimatePresence>
     </PageContainer>
@@ -295,7 +301,7 @@ export default function ProfilePage() {
 }
 
 // Edit Name Modal
-function EditNameModal({ name, surname, onSave, onClose }) {
+function EditNameModal({ name, surname, onSave, onClose, t }) {
   const [localName, setLocalName] = useState(name)
   const [localSurname, setLocalSurname] = useState(surname)
 
@@ -316,7 +322,7 @@ function EditNameModal({ name, surname, onSave, onClose }) {
         onClick={e => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold">Ad Soyad dəyiş</h3>
+          <h3 className="text-lg font-semibold">{t('profile.editName')}</h3>
           <button onClick={onClose} className="p-2 rounded-full hover:bg-muted">
             <X className="w-5 h-5" />
           </button>
@@ -324,7 +330,7 @@ function EditNameModal({ name, surname, onSave, onClose }) {
 
         <div className="space-y-4 mb-6">
           <div>
-            <label className="text-sm text-muted-foreground mb-1 block">Ad</label>
+            <label className="text-sm text-muted-foreground mb-1 block">{t('profile.fields.name').split(' ')[0]}</label>
             <input
               type="text"
               value={localName}
@@ -333,7 +339,7 @@ function EditNameModal({ name, surname, onSave, onClose }) {
             />
           </div>
           <div>
-            <label className="text-sm text-muted-foreground mb-1 block">Soyad</label>
+            <label className="text-sm text-muted-foreground mb-1 block">{t('profile.fields.name').split(' ')[1] || 'Surname'}</label>
             <input
               type="text"
               value={localSurname}
@@ -347,7 +353,7 @@ function EditNameModal({ name, surname, onSave, onClose }) {
           onClick={() => onSave(localName, localSurname)}
           className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-semibold"
         >
-          Yadda saxla
+          {t('common.save')}
         </button>
       </motion.div>
     </motion.div>
@@ -355,7 +361,7 @@ function EditNameModal({ name, surname, onSave, onClose }) {
 }
 
 // Edit Phone Modal
-function EditPhoneModal({ phone, onSave, onClose }) {
+function EditPhoneModal({ phone, onSave, onClose, t }) {
   const [localPhone, setLocalPhone] = useState(phone)
 
   return (
@@ -375,14 +381,14 @@ function EditPhoneModal({ phone, onSave, onClose }) {
         onClick={e => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold">Telefon dəyiş</h3>
+          <h3 className="text-lg font-semibold">{t('profile.editPhone')}</h3>
           <button onClick={onClose} className="p-2 rounded-full hover:bg-muted">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <div className="mb-6">
-          <label className="text-sm text-muted-foreground mb-1 block">Telefon nömrəsi</label>
+          <label className="text-sm text-muted-foreground mb-1 block">{t('profile.fields.phone')}</label>
           <input
             type="tel"
             value={localPhone}
@@ -395,7 +401,7 @@ function EditPhoneModal({ phone, onSave, onClose }) {
           onClick={() => onSave(localPhone)}
           className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-semibold"
         >
-          Yadda saxla
+          {t('common.save')}
         </button>
       </motion.div>
     </motion.div>
@@ -403,7 +409,7 @@ function EditPhoneModal({ phone, onSave, onClose }) {
 }
 
 // Change PIN Modal
-function ChangePinModal({ onClose }) {
+function ChangePinModal({ onClose, t }) {
   const [step, setStep] = useState(1) // 1: current, 2: new, 3: confirm
   const [currentPin, setCurrentPin] = useState('')
   const [newPin, setNewPin] = useState('')
@@ -420,11 +426,11 @@ function ChangePinModal({ onClose }) {
         setStep(2)
         setError('')
       } else {
-        setError('Cari PIN yanlışdır')
+        setError(t('profile.changePin.wrongCurrent'))
       }
     } else if (step === 2) {
       if (newPin.length !== 4) {
-        setError('PIN 4 rəqəm olmalıdır')
+        setError(t('profile.changePin.lengthError'))
       } else {
         setStep(3)
         setError('')
@@ -434,15 +440,15 @@ function ChangePinModal({ onClose }) {
         setSuccess(true)
         setTimeout(onClose, 1500)
       } else {
-        setError('PIN-lər uyğun gəlmir')
+        setError(t('profile.changePin.mismatch'))
       }
     }
   }
 
   const titles = {
-    1: 'Cari PIN-i daxil edin',
-    2: 'Yeni PIN yaradın',
-    3: 'Yeni PIN-i təsdiqləyin',
+    1: t('profile.changePin.current'),
+    2: t('profile.changePin.new'),
+    3: t('profile.changePin.confirm'),
   }
 
   return (
@@ -462,7 +468,7 @@ function ChangePinModal({ onClose }) {
         onClick={e => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold">PIN dəyiş</h3>
+          <h3 className="text-lg font-semibold">{t('profile.changePin.title')}</h3>
           <button onClick={onClose} className="p-2 rounded-full hover:bg-muted">
             <X className="w-5 h-5" />
           </button>
@@ -477,7 +483,7 @@ function ChangePinModal({ onClose }) {
             <div className="w-16 h-16 mx-auto bg-accent/20 rounded-full flex items-center justify-center mb-4">
               <Lock className="w-8 h-8 text-accent" />
             </div>
-            <p className="text-lg font-semibold text-accent">PIN uğurla dəyişdirildi!</p>
+            <p className="text-lg font-semibold text-accent">{t('profile.changePin.success')}</p>
           </motion.div>
         ) : (
           <>
@@ -534,7 +540,7 @@ function ChangePinModal({ onClose }) {
                        (step === 3 && confirmPin.length !== 4)}
               className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {step === 3 ? 'Təsdiqlə' : 'Davam et'}
+              {step === 3 ? t('common.confirm') : t('common.save')}
             </button>
           </>
         )}

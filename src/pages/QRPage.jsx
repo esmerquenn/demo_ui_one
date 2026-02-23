@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import {
   QrCode,
   Camera,
@@ -16,31 +17,32 @@ import {
 } from 'lucide-react'
 import { PageContainer } from '@/components/layout/PageContainer'
 
-const scanOptions = [
-  {
-    id: 'camera',
-    icon: Camera,
-    title: 'QR Skan',
-    description: 'Kamera ilə skan et',
-    color: 'bg-primary',
-  },
-  {
-    id: 'gallery',
-    icon: Image,
-    title: 'Qalereyadan',
-    description: 'Şəkil seç',
-    color: 'bg-accent',
-  },
-  {
-    id: 'manual',
-    icon: Keyboard,
-    title: 'Manual',
-    description: 'Fiskal ID daxil et',
-    color: 'bg-destructive',
-  },
-]
-
 export default function QRPage() {
+  const { t } = useTranslation()
+
+  const scanOptions = [
+    {
+      id: 'camera',
+      icon: Camera,
+      title: t('qr.options.camera'),
+      description: t('qr.options.cameraDesc'),
+      color: 'bg-primary',
+    },
+    {
+      id: 'gallery',
+      icon: Image,
+      title: t('qr.options.gallery'),
+      description: t('qr.options.galleryDesc'),
+      color: 'bg-accent',
+    },
+    {
+      id: 'manual',
+      icon: Keyboard,
+      title: t('qr.options.manual'),
+      description: t('qr.options.manualDesc'),
+      color: 'bg-destructive',
+    },
+  ]
   const navigate = useNavigate()
   const [selectedOption, setSelectedOption] = useState(null)
   const [isScanning, setIsScanning] = useState(false)
@@ -105,8 +107,8 @@ export default function QRPage() {
         className="flex items-center justify-between mb-6"
       >
         <div>
-          <h1 className="text-xl font-semibold">Çek Skan</h1>
-          <p className="text-sm text-muted-foreground">Çeki skan edərək xal qazan</p>
+          <h1 className="text-xl font-semibold">{t('qr.title')}</h1>
+          <p className="text-sm text-muted-foreground">{t('qr.subtitle')}</p>
         </div>
       </motion.header>
 
@@ -134,9 +136,9 @@ export default function QRPage() {
               <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary rounded-br-lg" />
             </div>
 
-            <h2 className="text-lg font-semibold mb-2">Skan üsulunu seç</h2>
+            <h2 className="text-lg font-semibold mb-2">{t('qr.selectMethod')}</h2>
             <p className="text-sm text-muted-foreground max-w-[200px] mx-auto">
-              Çekin üzərindəki QR kodu skan et və xal qazan
+              {t('qr.scanQR')}
             </p>
           </div>
         </motion.div>
@@ -182,9 +184,9 @@ export default function QRPage() {
                 <Coins className="w-5 h-5 text-accent" />
               </div>
               <div>
-                <p className="font-medium">Xal qazanma qaydası</p>
+                <p className="font-medium">{t('qr.info.title')}</p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Hər 1 ₼ alış-veriş = 1 xal. Upgrade aktivdirsə 2x xal qazanırsan!
+                  {t('qr.info.description')}
                 </p>
               </div>
             </div>
@@ -209,8 +211,8 @@ export default function QRPage() {
               >
                 <Loader2 className="w-16 h-16 text-primary" />
               </motion.div>
-              <p className="text-lg font-medium">Yoxlanılır...</p>
-              <p className="text-sm text-muted-foreground mt-1">Çek məlumatları alınır</p>
+              <p className="text-lg font-medium">{t('qr.scanning')}</p>
+              <p className="text-sm text-muted-foreground mt-1">{t('qr.gettingData')}</p>
             </div>
           </motion.div>
         )}
@@ -247,8 +249,8 @@ export default function QRPage() {
               </motion.div>
 
               <div className="text-center mb-6">
-                <h2 className="text-xl font-bold mb-1">Uğurlu!</h2>
-                <p className="text-muted-foreground">Çek uğurla əlavə edildi</p>
+                <h2 className="text-xl font-bold mb-1">{t('qr.success.title')}</h2>
+                <p className="text-muted-foreground">{t('qr.success.subtitle')}</p>
               </div>
 
               {/* Result Details */}
@@ -265,11 +267,11 @@ export default function QRPage() {
 
                 <div className="grid grid-cols-2 gap-3">
                   <div className="bg-card rounded-xl p-3 text-center">
-                    <p className="text-sm text-muted-foreground">Məbləğ</p>
+                    <p className="text-sm text-muted-foreground">{t('qr.success.amount')}</p>
                     <p className="text-lg font-bold">{mockResult.amount} ₼</p>
                   </div>
                   <div className="hero-gradient rounded-xl p-3 text-center">
-                    <p className="text-sm text-white/80">Qazandın</p>
+                    <p className="text-sm text-white/80">{t('qr.success.earned')}</p>
                     <p className="text-lg font-bold text-white flex items-center justify-center gap-1">
                       +{mockResult.points}
                       <Sparkles className="w-4 h-4" />
@@ -284,13 +286,13 @@ export default function QRPage() {
                   onClick={handleClose}
                   className="flex-1 py-3 rounded-xl bg-muted text-muted-foreground font-medium"
                 >
-                  Başqa skan
+                  {t('qr.success.scanAnother')}
                 </button>
                 <button
                   onClick={handleDone}
                   className="flex-1 py-3 rounded-xl bg-primary text-white font-medium"
                 >
-                  Tamam
+                  {t('qr.success.done')}
                 </button>
               </div>
             </motion.div>
@@ -320,7 +322,7 @@ export default function QRPage() {
               <div className="w-10 h-1 bg-muted-foreground/30 rounded-full mx-auto mb-4" />
 
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold">Fiskal ID daxil et</h2>
+                <h2 className="text-lg font-semibold">{t('qr.manual.title')}</h2>
                 <button onClick={() => setShowManualInput(false)}>
                   <X className="w-6 h-6" />
                 </button>
@@ -334,12 +336,12 @@ export default function QRPage() {
                   type="text"
                   value={manualId}
                   onChange={(e) => setManualId(e.target.value)}
-                  placeholder="FI-2025-XXXX-XXXXXX"
+                  placeholder={t('qr.manual.placeholder')}
                   className="w-full bg-muted rounded-xl px-4 py-3 text-lg font-mono"
                   autoFocus
                 />
                 <p className="text-xs text-muted-foreground mt-2">
-                  Çekin altında yerləşən Fiskal ID-ni daxil edin
+                  {t('qr.manual.hint')}
                 </p>
               </div>
 
@@ -352,7 +354,7 @@ export default function QRPage() {
                     : 'bg-muted text-muted-foreground'
                 }`}
               >
-                Yoxla
+                {t('qr.manual.verify')}
               </button>
             </motion.div>
           </>

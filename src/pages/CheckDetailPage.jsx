@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import {
   ArrowLeft,
   Store,
@@ -18,21 +19,6 @@ import {
 } from 'lucide-react'
 import { allChecks } from '@/data/mockData'
 
-function formatDate(dateString) {
-  return new Date(dateString).toLocaleDateString('az-AZ', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  })
-}
-
-function formatTime(dateString) {
-  return new Date(dateString).toLocaleTimeString('az-AZ', {
-    hour: '2-digit',
-    minute: '2-digit'
-  })
-}
-
 function InfoRow({ icon: Icon, label, value, iconColor = 'text-primary' }) {
   return (
     <div className="flex items-center gap-3 py-3 border-b border-border last:border-0">
@@ -48,6 +34,24 @@ function InfoRow({ icon: Icon, label, value, iconColor = 'text-primary' }) {
 }
 
 export default function CheckDetailPage() {
+  const { t, i18n } = useTranslation()
+
+  const formatDate = (dateString) => {
+    const locale = i18n.language === 'az' ? 'az-AZ' : i18n.language === 'ru' ? 'ru-RU' : 'en-US'
+    return new Date(dateString).toLocaleDateString(locale, {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    })
+  }
+
+  const formatTime = (dateString) => {
+    const locale = i18n.language === 'az' ? 'az-AZ' : i18n.language === 'ru' ? 'ru-RU' : 'en-US'
+    return new Date(dateString).toLocaleTimeString(locale, {
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+  }
   const navigate = useNavigate()
   const { id } = useParams()
 
@@ -60,12 +64,12 @@ export default function CheckDetailPage() {
       <div className="min-h-screen bg-background lg:ml-64 flex items-center justify-center">
         <div className="text-center">
           <Receipt className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-          <p className="text-muted-foreground">Çek tapılmadı</p>
+          <p className="text-muted-foreground">{t('checks.empty')}</p>
           <button
             onClick={() => navigate(-1)}
             className="text-primary mt-2"
           >
-            Geri qayıt
+            {t('common.close')}
           </button>
         </div>
       </div>
@@ -88,7 +92,7 @@ export default function CheckDetailPage() {
             >
               <ArrowLeft className="w-6 h-6" />
             </button>
-            <h1 className="text-lg font-semibold">Çek Detalları</h1>
+            <h1 className="text-lg font-semibold">{t('checks.detail')}</h1>
           </div>
           <div className="flex items-center gap-2">
             <button className="p-2 rounded-full active:bg-card lg:hover:bg-card">
@@ -128,12 +132,12 @@ export default function CheckDetailPage() {
               {/* Amount & Points */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-[#162033] rounded-xl p-4 text-center">
-                  <p className="text-sm text-muted-foreground mb-1">Məbləğ</p>
+                  <p className="text-sm text-muted-foreground mb-1">{t('qr.success.amount')}</p>
                   <p className="text-2xl font-bold">{check.amount.toFixed(2)} ₼</p>
                 </div>
                 <div className="hero-gradient rounded-xl p-4 text-center">
-                  <p className="text-sm text-white/80 mb-1">Qazanılan</p>
-                  <p className="text-2xl font-bold text-white">+{check.points} xal</p>
+                  <p className="text-sm text-white/80 mb-1">{t('qr.success.earned')}</p>
+                  <p className="text-2xl font-bold text-white">+{check.points} {t('common.points')}</p>
                 </div>
               </div>
             </motion.div>
@@ -147,12 +151,12 @@ export default function CheckDetailPage() {
             >
               <h3 className="font-semibold mb-3 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-primary" />
-                Çek Şəkli
+                {t('checks.detail.receiptImage')}
               </h3>
               <div className="bg-[#162033] rounded-xl h-48 flex items-center justify-center">
                 <div className="text-center text-muted-foreground">
                   <Receipt className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                  <p className="text-sm">Çek şəkli yoxdur</p>
+                  <p className="text-sm">{t('checks.detail.noImage')}</p>
                 </div>
               </div>
             </motion.div>
@@ -167,7 +171,7 @@ export default function CheckDetailPage() {
               transition={{ delay: 0.15 }}
               className="bg-card rounded-2xl p-5"
             >
-              <h3 className="font-semibold mb-3">Məhsullar</h3>
+              <h3 className="font-semibold mb-3">{t('checks.detail.products')}</h3>
               <div className="space-y-3">
                 {check.items.map((item, index) => (
                   <div key={index} className="flex items-center justify-between py-2 border-b border-border last:border-0">
@@ -181,11 +185,11 @@ export default function CheckDetailPage() {
               </div>
               <div className="border-t border-border mt-3 pt-3">
                 <div className="flex justify-between text-sm text-muted-foreground mb-1">
-                  <span>ƏDV ({((check.taxAmount / check.amount) * 100).toFixed(0)}%)</span>
+                  <span>{t('checks.detail.tax')} ({((check.taxAmount / check.amount) * 100).toFixed(0)}%)</span>
                   <span>{check.taxAmount.toFixed(2)} ₼</span>
                 </div>
                 <div className="flex justify-between font-semibold text-lg">
-                  <span>Cəmi</span>
+                  <span>{t('checks.detail.total')}</span>
                   <span>{check.amount.toFixed(2)} ₼</span>
                 </div>
               </div>
@@ -198,42 +202,42 @@ export default function CheckDetailPage() {
               transition={{ delay: 0.2 }}
               className="bg-card rounded-2xl p-5"
             >
-              <h3 className="font-semibold mb-3">Ətraflı Məlumat</h3>
+              <h3 className="font-semibold mb-3">{t('checks.detail.info')}</h3>
 
               <InfoRow
                 icon={Hash}
-                label="Fiskal ID"
+                label={t('checks.detail.fiscalId')}
                 value={check.fiscalId}
                 iconColor="text-accent"
               />
               <InfoRow
                 icon={Calendar}
-                label="Tarix"
+                label={t('checks.detail.date')}
                 value={formatDate(check.date)}
                 iconColor="text-primary"
               />
               <InfoRow
                 icon={Clock}
-                label="Saat"
+                label={t('checks.detail.time')}
                 value={formatTime(check.date)}
                 iconColor="text-primary"
               />
               <InfoRow
                 icon={CreditCard}
-                label="Ödəniş üsulu"
-                value={check.paymentMethod === 'card' ? 'Kart' : 'Nağd'}
+                label={t('checks.detail.paymentMethod')}
+                value={check.paymentMethod === 'card' ? t('checks.detail.card') : t('checks.detail.cash')}
                 iconColor="text-destructive"
               />
               <InfoRow
                 icon={User}
-                label="Kassir"
+                label={t('checks.detail.cashier')}
                 value={check.cashier}
                 iconColor="text-muted-foreground"
               />
               <InfoRow
                 icon={Coins}
-                label="Status"
-                value={check.status === 'completed' ? 'Təsdiqlənib' : 'Gözləmədə'}
+                label={t('checks.detail.status')}
+                value={check.status === 'completed' ? t('checks.detail.confirmed') : t('checks.detail.pending')}
                 iconColor="text-accent"
               />
             </motion.div>

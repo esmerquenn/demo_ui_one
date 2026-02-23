@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import {
   ArrowLeft,
   Store,
@@ -14,24 +15,8 @@ import {
 } from 'lucide-react'
 import { allChecks, stores } from '@/data/mockData'
 
-function formatDate(dateString) {
-  const date = new Date(dateString)
-  return date.toLocaleDateString('az-AZ', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  })
-}
-
-function formatTime(dateString) {
-  return new Date(dateString).toLocaleTimeString('az-AZ', {
-    hour: '2-digit',
-    minute: '2-digit'
-  })
-}
-
 const amountRanges = [
-  { label: 'Hamısı', min: 0, max: Infinity },
+  { labelKey: 'all', min: 0, max: Infinity },
   { label: '0 - 50 ₼', min: 0, max: 50 },
   { label: '50 - 100 ₼', min: 50, max: 100 },
   { label: '100 - 500 ₼', min: 100, max: 500 },
@@ -39,6 +24,25 @@ const amountRanges = [
 ]
 
 export default function ChecksHistoryPage() {
+  const { t, i18n } = useTranslation()
+
+  const formatDate = (dateString) => {
+    const locale = i18n.language === 'az' ? 'az-AZ' : i18n.language === 'ru' ? 'ru-RU' : 'en-US'
+    const date = new Date(dateString)
+    return date.toLocaleDateString(locale, {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    })
+  }
+
+  const formatTime = (dateString) => {
+    const locale = i18n.language === 'az' ? 'az-AZ' : i18n.language === 'ru' ? 'ru-RU' : 'en-US'
+    return new Date(dateString).toLocaleTimeString(locale, {
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+  }
   const navigate = useNavigate()
   const [showFilters, setShowFilters] = useState(false)
   const [filters, setFilters] = useState({
@@ -116,7 +120,7 @@ export default function ChecksHistoryPage() {
             >
               <ArrowLeft className="w-6 h-6" />
             </button>
-            <h1 className="text-lg font-semibold">Çek Tarixçəsi</h1>
+            <h1 className="text-lg font-semibold">{t('checks.title')}</h1>
           </div>
           <button
             onClick={() => setShowFilters(true)}
@@ -141,13 +145,13 @@ export default function ChecksHistoryPage() {
             className="flex flex-col items-center justify-center py-20"
           >
             <Store className="w-16 h-16 text-muted-foreground mb-4" />
-            <p className="text-muted-foreground">Çek tapılmadı</p>
+            <p className="text-muted-foreground">{t('checks.empty')}</p>
             {activeFiltersCount > 0 && (
               <button
                 onClick={clearFilters}
                 className="text-primary mt-2"
               >
-                Filterləri təmizlə
+                {t('checks.clearFilters')}
               </button>
             )}
           </motion.div>
@@ -183,7 +187,7 @@ export default function ChecksHistoryPage() {
                     <div className="text-right flex items-center gap-2">
                       <div>
                         <p className="font-semibold">{check.amount.toFixed(2)} ₼</p>
-                        <p className="text-sm text-accent">+{check.points} xal</p>
+                        <p className="text-sm text-accent">+{check.points} {t('common.points')}</p>
                       </div>
                       <ChevronRight className="w-5 h-5 text-muted-foreground" />
                     </div>
@@ -203,17 +207,17 @@ export default function ChecksHistoryPage() {
             className="bg-[#162033] rounded-xl p-4 mt-4"
           >
             <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">Ümumi çek</span>
+              <span className="text-muted-foreground">{t('checks.summary.total')}</span>
               <span className="font-semibold">{filteredChecks.length}</span>
             </div>
             <div className="flex justify-between items-center mt-2">
-              <span className="text-muted-foreground">Ümumi məbləğ</span>
+              <span className="text-muted-foreground">{t('checks.summary.amount')}</span>
               <span className="font-semibold">
                 {filteredChecks.reduce((sum, c) => sum + c.amount, 0).toFixed(2)} ₼
               </span>
             </div>
             <div className="flex justify-between items-center mt-2">
-              <span className="text-muted-foreground">Ümumi xal</span>
+              <span className="text-muted-foreground">{t('checks.summary.points')}</span>
               <span className="font-semibold text-accent">
                 +{filteredChecks.reduce((sum, c) => sum + c.points, 0)}
               </span>
@@ -246,7 +250,7 @@ export default function ChecksHistoryPage() {
 
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-lg font-semibold">Filterlər</h2>
+                  <h2 className="text-lg font-semibold">{t('checks.filters.title')}</h2>
                   <button onClick={() => setShowFilters(false)}>
                     <X className="w-6 h-6" />
                   </button>
@@ -256,7 +260,7 @@ export default function ChecksHistoryPage() {
                 <div className="mb-6">
                   <div className="flex items-center gap-2 mb-3">
                     <Building2 className="w-5 h-5 text-primary" />
-                    <span className="font-medium">Obyekt</span>
+                    <span className="font-medium">{t('checks.filters.store')}</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     <button
@@ -267,7 +271,7 @@ export default function ChecksHistoryPage() {
                           : 'bg-muted text-muted-foreground'
                       }`}
                     >
-                      Hamısı
+                      {t('common.all')}
                     </button>
                     {stores.map(store => (
                       <button
@@ -289,20 +293,20 @@ export default function ChecksHistoryPage() {
                 <div className="mb-6">
                   <div className="flex items-center gap-2 mb-3">
                     <Banknote className="w-5 h-5 text-accent" />
-                    <span className="font-medium">Məbləğ</span>
+                    <span className="font-medium">{t('checks.filters.amount')}</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {amountRanges.map(range => (
                       <button
-                        key={range.label}
+                        key={range.labelKey || range.label}
                         onClick={() => setFilters(f => ({ ...f, amountRange: range }))}
                         className={`px-3 py-2 rounded-lg text-sm transition-colors ${
-                          filters.amountRange.label === range.label
+                          (filters.amountRange.labelKey || filters.amountRange.label) === (range.labelKey || range.label)
                             ? 'bg-primary text-white'
                             : 'bg-muted text-muted-foreground'
                         }`}
                       >
-                        {range.label}
+                        {range.labelKey ? t(`common.${range.labelKey}`) : range.label}
                       </button>
                     ))}
                   </div>
@@ -312,11 +316,11 @@ export default function ChecksHistoryPage() {
                 <div className="mb-6">
                   <div className="flex items-center gap-2 mb-3">
                     <Calendar className="w-5 h-5 text-destructive" />
-                    <span className="font-medium">Tarix</span>
+                    <span className="font-medium">{t('checks.filters.date')}</span>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-sm text-muted-foreground mb-1 block">Başlanğıc</label>
+                      <label className="text-sm text-muted-foreground mb-1 block">{t('checks.filters.dateFrom')}</label>
                       <input
                         type="date"
                         value={filters.dateFrom || ''}
@@ -325,7 +329,7 @@ export default function ChecksHistoryPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm text-muted-foreground mb-1 block">Son</label>
+                      <label className="text-sm text-muted-foreground mb-1 block">{t('checks.filters.dateTo')}</label>
                       <input
                         type="date"
                         value={filters.dateTo || ''}
@@ -342,13 +346,13 @@ export default function ChecksHistoryPage() {
                     onClick={clearFilters}
                     className="flex-1 py-3 rounded-xl bg-muted text-muted-foreground font-medium"
                   >
-                    Təmizlə
+                    {t('checks.filters.clear')}
                   </button>
                   <button
                     onClick={() => setShowFilters(false)}
                     className="flex-1 py-3 rounded-xl bg-primary text-white font-medium"
                   >
-                    Tətbiq et
+                    {t('checks.filters.apply')}
                   </button>
                 </div>
               </div>
